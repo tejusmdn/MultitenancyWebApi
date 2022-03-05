@@ -23,7 +23,19 @@ namespace MultitenancyWebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(this._locationService.GetServiceRegion());
+            string serviceRegion;
+
+            try
+            {
+                serviceRegion = this._locationService.GetServiceRegion();
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+            
+
+            return Ok(serviceRegion);
         }
     }
 }
